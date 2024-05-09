@@ -7,9 +7,9 @@ repos:
   - updates
 
 metadata:
-  name: fedora-boot-full
-  summary: Fedora Bootable Full
+  name: fedora-boot-atomic-base
+  summary: Fedora Bootable Atomic Base
 
 include:
   - 01-minimal/kernel.yaml
-  - 02-full/manifest.yaml
+  - 03-desktop/gnome/manifest.yaml
