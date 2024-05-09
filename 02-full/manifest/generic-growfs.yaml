@@ -1,0 +1,12 @@
+add-files:
+  - - ../files/bootc-generic-growpart
+    - /usr/libexec/bootc-generic-growpart
+  - - ../files/bootc-generic-growpart.service
+    - /usr/lib/systemd/system/bootc-generic-growpart.service
+
+postprocess:
+  - |
+    #!/bin/bash
+    set -euo pipefail
+    mkdir -p /usr/lib/systemd/system/local-fs.target.wants
+    ln -s ../bootc-generic-growpart.service /usr/lib/systemd/system/local-fs.target.wants/bootc-generic-growpart.service
