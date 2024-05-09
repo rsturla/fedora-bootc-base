@@ -17,7 +17,7 @@ import sys
 import yaml
 import libcomps
 
-ARCHES = ("x86_64")
+ARCHES = ("x86_64", "aarch64", "ppc64le")
 
 def fatal(msg):
     '''Print the error message and exit.'''
@@ -59,6 +59,7 @@ def load_packages_from_manifest(manifest_path):
     '''Load the list of packages from an rpm-ostree manifest file.'''
     with open(manifest_path, encoding='UTF-8') as f:
         manifest = yaml.safe_load(f)
+    print(f'Loaded {manifest_path}')
     manifest_packages = {}
     manifest_packages['all'] = set(manifest['packages'])
     for arch in ARCHES:

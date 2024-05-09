@@ -1,0 +1,15 @@
+releasever: 40
+variables:
+  distro: "fedora"
+
+repos:
+  - fedora
+  - updates
+
+metadata:
+  name: fedora-boot-atomic-base
+  summary: Fedora Bootable Atomic Base
+
+include:
+  - 01-minimal/kernel.yaml
+  - 03-desktop/gnome/manifest.yaml
