@@ -65,7 +65,7 @@ build-atomic-base-qcow:
     -v $(pwd)/output:/output -v /var/lib/containers/storage:/var/lib/containers/storage \
     quay.io/centos-bootc/bootc-image-builder:latest \
     --type qcow2 --rootfs ext4 \
-    --local localhost/fedora-bootc-full:latest
+    --local localhost/fedora-bootc-base:latest
     popd
     sudo chown -R $(whoami):$(whoami) _osbuild/output
 
