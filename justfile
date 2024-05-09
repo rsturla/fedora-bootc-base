@@ -34,6 +34,15 @@ build-atomic-gnome:
         -t localhost/fedora-bootc-atomic-gnome \
         .
 
+build-atomic-kde:
+    sudo podman build \
+        --security-opt label=disable \
+        --cap-add=all \
+        --device /dev/fuse \
+        --build-arg MANIFEST=./fedora-bootc-atomic-kde.yaml \
+        -t localhost/fedora-bootc-atomic-kde \
+        .
+
 comps-sync:
     #!/usr/bin/env bash
     pushd ./helpers/comps-sync
@@ -55,6 +64,7 @@ comps-sync:
 build-atomic-base-qcow:
     #!/usr/bin/env bash
     pushd _osbuild
+    mkdir -p output
     sudo podman run \
     --rm \
     -it \
@@ -72,6 +82,7 @@ build-atomic-base-qcow:
 build-atomic-gnome-qcow:
     #!/usr/bin/env bash
     pushd _osbuild
+    mkdir -p output
     sudo podman run \
     --rm \
     -it \
@@ -83,5 +94,23 @@ build-atomic-gnome-qcow:
     quay.io/centos-bootc/bootc-image-builder:latest \
     --type qcow2 --rootfs ext4 \
     --local localhost/fedora-bootc-atomic-gnome:latest
+    popd
+    sudo chown -R $(whoami):$(whoami) _osbuild/output
+
+build-atomic-kde-qcow:
+    #!/usr/bin/env bash
+    pushd _osbuild
+    mkdir -p output
+    sudo podman run \
+    --rm \
+    -it \
+    --privileged \
+    --pull=newer \
+    --security-opt label=type:unconfined_t \
+    -v $(pwd)/config.toml:/config.toml \
+    -v $(pwd)/output:/output -v /var/lib/containers/storage:/var/lib/containers/storage \
+    quay.io/centos-bootc/bootc-image-builder:latest \
+    --type qcow2 --rootfs ext4 \
+    --local localhost/fedora-bootc-atomic-kde:latest
     popd
     sudo chown -R $(whoami):$(whoami) _osbuild/output

@@ -7,9 +7,9 @@ repos:
   - updates
 
 metadata:
-  name: fedora-boot-atomic-gnome
-  summary: Fedora Bootable Atomic GNOME
+  name: fedora-boot-atomic-kde
+  summary: Fedora Bootable Atomic KDE
 
 include:
   - 01-minimal/kernel.yaml
-  - 03-desktop/gnome/manifest.yaml
+  - 03-desktop/kde/manifest.yaml
