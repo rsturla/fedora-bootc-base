@@ -23,6 +23,10 @@ jobs:
       - name: Install Just
         uses: extractions/setup-just@v1
 
+      - name: Setup Podman
+        run: |
+          brew install podman
+
       - name: Build Image
         run: |
           just build-atomic ${{ matrix.images }}
