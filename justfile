@@ -1,6 +1,6 @@
 comps-sync:
     #!/usr/bin/env bash
-    pushd ./helpers/comps-sync
+    pushd ./scripts/comps-sync
     podman build \
         -t localhost/comps-sync \
         .
@@ -47,7 +47,7 @@ build-atomic desktop:
 
 build-atomic-qcow desktop:
     #!/usr/bin/env bash
-    pushd _osbuild
+    pushd .osbuild
     mkdir -p output
     sudo podman run \
     --rm \
@@ -61,4 +61,4 @@ build-atomic-qcow desktop:
     --type qcow2 --rootfs ext4 \
     --local localhost/fedora-bootc-atomic-{{desktop}}:latest
     popd
-    sudo chown -R $(whoami):$(whoami) _osbuild/output
+    sudo chown -R $(whoami):$(whoami) .osbuild/output
