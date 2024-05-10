@@ -1,0 +1,23 @@
+ref: fedora/${releasever}/${basearch}/cosmic
+rojig:
+  name: fedora-cosmic
+  summary: "Fedora Cosmic"
+  license: MIT
+
+include:
+  - ../base/manifest.yaml
+
+packages:
+  - tuned
+  - gnome-keyring
+  - cosmic-desktop
+
+# Cosmic specific workarounds and configuration
+postprocess:
+  - |
+    #!/bin/bash
+    set -xeuo pipefail
+
+    # Setup display manager
+    rm -f /etc/systemd/system/display-manager.service
+    ln -s /usr/lib/systemd/system/cosmic-greeter.service /etc/systemd/system/display-manager.service
