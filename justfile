@@ -17,7 +17,7 @@ comps-sync:
           /mnt/fedora-comps/comps-f${version}.xml.in --save
 
 build-minimal:
-    sudo podman build \
+    podman build \
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
@@ -27,7 +27,7 @@ build-minimal:
         .
 
 build-full:
-    sudo podman build \
+    podman build \
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
@@ -37,7 +37,7 @@ build-full:
         .
 
 build-atomic desktop:
-    sudo podman build \
+    podman build \
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \

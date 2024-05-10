@@ -40,4 +40,4 @@ jobs:
           just build-atomic ${{ matrix.images }}
 
       - name: Run Image
-        run: sudo podman run --rm -ti localhost/fedora-bootc-atomic-${{ matrix.images }}:latest bootc --help
+        run: podman run --rm -ti localhost/fedora-bootc-atomic-${{ matrix.images }}:latest bootc --help
