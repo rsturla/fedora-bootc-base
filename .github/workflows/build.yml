@@ -23,6 +23,9 @@ jobs:
       - name: Install Just
         uses: extractions/setup-just@v1
 
+      - name: Install Homebrew
+        uses: homebrew/actions/setup-homebrew@master
+
       - name: Setup Podman
         run: |
           brew install podman
