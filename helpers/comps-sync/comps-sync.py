@@ -201,7 +201,7 @@ def main():
     # List of comps groups used for each desktop
     desktops_comps_groups = {
         "gnome": ["gnome-desktop", "base-x"],
-        # "kde": ["kde-desktop", "base-graphical"],
+        "kde": ["kde-desktop", "base-graphical"],
         # "xfce": ["xfce-desktop", "xfce-apps", "xfce-extra-plugins", "base-x"],
         # "lxqt": ["lxqt-desktop", "base-graphical"],
         # "deepin": ["deepin-desktop", "base-x"],
