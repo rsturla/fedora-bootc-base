@@ -13,9 +13,9 @@ jobs:
       fail-fast: false
       matrix:
         images:
-          - atomic-base
-          - atomic-gnome
-          - atomic-kde
+          - base
+          - gnome
+          - kde
 
     steps:
       - name: Checkout
