@@ -10,6 +10,7 @@ jobs:
   build-atomic:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         images:
           - atomic-base
@@ -32,4 +33,5 @@ jobs:
 
       - name: Build Image
         run: |
+          sudo su
           just build-atomic ${{ matrix.images }}
