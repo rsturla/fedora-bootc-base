@@ -9,7 +9,7 @@ comps-sync:
     git clone https://pagure.io/fedora-comps.git
     version=$(jq -r '.Labels."redhat.version-id"' fedora-bootc-config.json)
     echo "Version: $version"
-    sudo podman run \
+    podman run \
         --rm \
         -v $(pwd):/mnt:Z \
         localhost/comps-sync \
@@ -17,7 +17,7 @@ comps-sync:
           /mnt/fedora-comps/comps-f${version}.xml.in --save
 
 build-minimal:
-    sudo podman build \
+    podman build \
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
@@ -27,7 +27,7 @@ build-minimal:
         .
 
 build-full:
-    sudo podman build \
+    podman build \
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
@@ -37,7 +37,7 @@ build-full:
         .
 
 build-atomic desktop:
-    sudo podman build \
+    podman build \
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
@@ -45,7 +45,7 @@ build-atomic desktop:
         -t localhost/fedora-bootc-atomic-{{desktop}} \
         .
 
-build-atomic-qcow desktop:
+build-atomic-qcow2 desktop:
     #!/usr/bin/env bash
     pushd .osbuild
     mkdir -p output
