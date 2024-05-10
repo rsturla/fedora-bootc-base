@@ -51,8 +51,8 @@ jobs:
         with:
           image: localhost/fedora-bootc-atomic-${{ matrix.images }}:latest
           tags: |
-            ${{ github.repository_name }}/fedora-bootc-atomic-${{ matrix.images }}:latest
-            ${{ github.repository_name }}/fedora-bootc-atomic-${{ matrix.images }}:${{ github.sha }}
+            fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}:latest
+            fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}:${{ github.sha }}
           registry: ghcr.io/${{ github.repository_owner }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
