@@ -9,6 +9,10 @@ on:
 jobs:
   build-atomic:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
     strategy:
       fail-fast: false
       matrix:
@@ -41,3 +45,22 @@ jobs:
 
       - name: Run Image
         run: podman run --rm -ti localhost/fedora-bootc-atomic-${{ matrix.images }}:latest bootc --help
+
+      # - name: Tag Image
+      #   env:
+      #     ORIG_IMAGE: localhost/fedora-bootc-atomic-${{ matrix.images }}:latest
+      #     GHCR_REPO: ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}
+      #   run: |
+      #     podman tag $ORIG_IMAGE $GHCR_REPO:${{ github.sha }}
+      #     podman tag $ORIG_IMAGE $GHCR_REPO:latest
+
+      - name: Push Image
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          image: localhost/fedora-bootc-atomic-${{ matrix.images }}:latest
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest
+          registry: ghcr.io/${{ github.repository_owner }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
