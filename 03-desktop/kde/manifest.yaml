@@ -1,4 +1,4 @@
-ref: fedora/rawhide/${basearch}/kinoite
+ref: fedora/${releasever}/${basearch}/kinoite
 rojig:
   name: fedora-kinoite
   summary: "Fedora Kinoite"
@@ -52,9 +52,3 @@ postprocess:
 
     # Enable auto updates in Discover
     echo -e "[Global]\nUseUnattendedUpdates=true\n" > /etc/xdg/PlasmaDiscoverUpdates
-
-# Kept in the leaf manifest as they are overwritten by Pungi in composes
-repos:
-  - fedora-rawhide
-  # - fedora-41
-  # - fedora-41-updates
