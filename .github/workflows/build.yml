@@ -27,9 +27,9 @@ jobs:
       - name: Install Homebrew
         uses: homebrew/actions/setup-homebrew@master
 
-      - name: Setup Podman
+      - name: Setup Dependencies
         run: |
-          brew install podman
+          brew install podman fuse-overlayfs
           podman --version
 
       - name: Build Image
