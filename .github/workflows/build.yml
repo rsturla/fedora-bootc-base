@@ -61,3 +61,6 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build QCOW2
+        run: just build-atomic-qcow ${{ matrix.images }}
