@@ -5,6 +5,9 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # Dayly at 00:00 UTC
+    - cron: '0 0 * * *'
 
 jobs:
   build-atomic:
@@ -42,14 +45,16 @@ jobs:
       - name: Build Image
         run: |
           just build-atomic ${{ matrix.images }}
+          podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}:latest
 
       - name: Run Image
-        run: podman run --rm -ti localhost/fedora-bootc-atomic-${{ matrix.images }}:latest bootc --help
+        run: podman run --rm -ti fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}:latest bootc --help
 
       - name: Push Image
+        # if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
         uses: redhat-actions/push-to-registry@v2
         with:
-          image: localhost/fedora-bootc-atomic-${{ matrix.images }}:latest
+          image: fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}
           tags: |
             fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}:latest
             fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}:${{ github.sha }}
