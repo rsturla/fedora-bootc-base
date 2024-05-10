@@ -5,10 +5,17 @@ on:
   push:
     branches:
       - main
+  schedule:
+    # Dayly at 00:00 UTC
+    - cron: '0 0 * * *'
 
 jobs:
   build-atomic:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
     strategy:
       fail-fast: false
       matrix:
@@ -16,7 +23,8 @@ jobs:
           - base
           - gnome
           - kde
-
+    env:
+      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,6 +46,18 @@ jobs:
       - name: Build Image
         run: |
           just build-atomic ${{ matrix.images }}
+          podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:latest
+          podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Run Image
-        run: podman run --rm -ti localhost/fedora-bootc-atomic-${{ matrix.images }}:latest bootc --help
+        run: podman run --rm -ti ${{ env.IMAGE_NAME }}:latest bootc --help
+
+      - name: Push Image
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          tags: |
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
