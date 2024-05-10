@@ -1,3 +1,21 @@
+comps-sync:
+    #!/usr/bin/env bash
+    pushd ./helpers/comps-sync
+    podman build \
+        -t localhost/comps-sync \
+        .
+    popd
+    rm -rf fedora-comps
+    git clone https://pagure.io/fedora-comps.git
+    version=$(jq -r '.Labels."redhat.version-id"' fedora-bootc-config.json)
+    echo "Version: $version"
+    podman run \
+        --rm \
+        -v $(pwd):/mnt:Z \
+        localhost/comps-sync \
+        /app/comps-sync.py \
+          /mnt/fedora-comps/comps-f${version}.xml.in --save
+
 build-minimal:
     sudo podman build \
         --security-opt label=disable \
@@ -18,54 +36,16 @@ build-full:
         -t localhost/fedora-bootc-full \
         .
 
-build-atomic-base:
+build-atomic desktop:
     sudo podman build \
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
-        --no-cache \
-        --build-arg MANIFEST=./fedora-bootc-atomic-base.yaml \
-        -t localhost/fedora-bootc-atomic-base \
+        --build-arg MANIFEST=./fedora-bootc-atomic-{{desktop}}.yaml \
+        -t localhost/fedora-bootc-atomic-{{desktop}} \
         .
 
-build-atomic-gnome:
-    sudo podman build \
-        --security-opt label=disable \
-        --cap-add=all \
-        --device /dev/fuse \
-        --no-cache \
-        --build-arg MANIFEST=./fedora-bootc-atomic-gnome.yaml \
-        -t localhost/fedora-bootc-atomic-gnome \
-        .
-
-build-atomic-kde:
-    sudo podman build \
-        --security-opt label=disable \
-        --cap-add=all \
-        --device /dev/fuse \
-        --build-arg MANIFEST=./fedora-bootc-atomic-kde.yaml \
-        -t localhost/fedora-bootc-atomic-kde \
-        .
-
-comps-sync:
-    #!/usr/bin/env bash
-    pushd ./helpers/comps-sync
-    podman build \
-        -t localhost/comps-sync \
-        .
-    popd
-    rm -rf fedora-comps
-    git clone https://pagure.io/fedora-comps.git
-    version=$(jq -r '.Labels."redhat.version-id"' fedora-bootc-config.json)
-    echo "Version: $version"
-    podman run \
-        --rm \
-        -v $(pwd):/mnt:Z \
-        localhost/comps-sync \
-        /app/comps-sync.py \
-          /mnt/fedora-comps/comps-f${version}.xml.in --save
-
-build-atomic-base-qcow:
+build-atomic-qcow desktop:
     #!/usr/bin/env bash
     pushd _osbuild
     mkdir -p output
@@ -79,42 +59,6 @@ build-atomic-base-qcow:
     -v $(pwd)/output:/output -v /var/lib/containers/storage:/var/lib/containers/storage \
     quay.io/centos-bootc/bootc-image-builder:latest \
     --type qcow2 --rootfs ext4 \
-    --local localhost/fedora-bootc-base:latest
-    popd
-    sudo chown -R $(whoami):$(whoami) _osbuild/output
-
-build-atomic-gnome-qcow:
-    #!/usr/bin/env bash
-    pushd _osbuild
-    mkdir -p output
-    sudo podman run \
-    --rm \
-    -it \
-    --privileged \
-    --pull=newer \
-    --security-opt label=type:unconfined_t \
-    -v $(pwd)/config.toml:/config.toml \
-    -v $(pwd)/output:/output -v /var/lib/containers/storage:/var/lib/containers/storage \
-    quay.io/centos-bootc/bootc-image-builder:latest \
-    --type qcow2 --rootfs ext4 \
-    --local localhost/fedora-bootc-atomic-gnome:latest
-    popd
-    sudo chown -R $(whoami):$(whoami) _osbuild/output
-
-build-atomic-kde-qcow:
-    #!/usr/bin/env bash
-    pushd _osbuild
-    mkdir -p output
-    sudo podman run \
-    --rm \
-    -it \
-    --privileged \
-    --pull=newer \
-    --security-opt label=type:unconfined_t \
-    -v $(pwd)/config.toml:/config.toml \
-    -v $(pwd)/output:/output -v /var/lib/containers/storage:/var/lib/containers/storage \
-    quay.io/centos-bootc/bootc-image-builder:latest \
-    --type qcow2 --rootfs ext4 \
-    --local localhost/fedora-bootc-atomic-kde:latest
+    --local localhost/fedora-bootc-atomic-{{desktop}}:latest
     popd
     sudo chown -R $(whoami):$(whoami) _osbuild/output
