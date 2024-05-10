@@ -1,5 +1,4 @@
 FROM quay.io/fedora/fedora:40 as repos
-COPY ./_yum-repos /etc/yum.repos.d
 
 FROM quay.io/centos-bootc/bootc-image-builder:latest as builder
 ARG MANIFEST=fedora-bootc-full.yaml
