@@ -1,0 +1,28 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-atomic:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        images:
+          - atomic-base
+          - atomic-gnome
+          - atomic-kde
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Just
+        uses: extractions/setup-just@v1
+
+      - name: Build Image
+        run: |
+          just build-atomic ${{ matrix.images }}
