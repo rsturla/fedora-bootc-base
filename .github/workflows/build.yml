@@ -30,6 +30,7 @@ jobs:
       - name: Setup Podman
         run: |
           brew install podman
+          podman --version
 
       - name: Build Image
         run: |
