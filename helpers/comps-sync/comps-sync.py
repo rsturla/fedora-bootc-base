@@ -196,7 +196,7 @@ def main():
     # Return code indicates if changes have or would have been done
     ret = 0
 
-    ret += update_manifests_from_groups(comps, groups, './03-desktop/base/packages-common-ostree.yaml', "common", args.save, comps_exclude_list, comps_exclude_list_all)
+    ret += update_manifests_from_groups(comps, groups, './02-desktop/base/packages-common-ostree.yaml', "common", args.save, comps_exclude_list, comps_exclude_list_all)
 
     # List of comps groups used for each desktop
     desktops_comps_groups = {
@@ -214,7 +214,7 @@ def main():
     # Generate treefiles for all desktops
     for desktop, groups in desktops_comps_groups.items():
         print()
-        ret += update_manifests_from_groups(comps, groups, f'./03-desktop/{desktop}/packages-desktop-{desktop}.yaml', desktop, args.save, comps_desktop_exclude_list, comps_exclude_list_all)
+        ret += update_manifests_from_groups(comps, groups, f'./02-desktop/{desktop}/packages-desktop-{desktop}.yaml', desktop, args.save, comps_desktop_exclude_list, comps_exclude_list_all)
 
     if not args.save and ret != 0:
         sys.exit(1)
