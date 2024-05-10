@@ -1,0 +1,17 @@
+releasever: 40
+variables:
+  distro: "fedora"
+
+repos:
+  - fedora
+  - updates
+  - copr:copr.fedorainfracloud.org:ryanabx:cosmic-epoch
+
+metadata:
+  name: fedora-boot-atomic-cosmic
+  summary: Fedora Bootable Atomic Cosmic
+
+include:
+  - 01-minimal/kernel.yaml
+  - 01-minimal/manifest.yaml
+  - 02-desktop/cosmic/manifest.yaml
