@@ -1,2 +1,2 @@
 fedora-comps/
-_osbuild/output/**
+.osbuild/output/**
