@@ -94,8 +94,8 @@ postprocess:
 # have recommends: false so these could only come in via
 # hard requirement, in which case the build will fail.
 exclude-packages:
-  - perl
-  - perl-interpreter
+  # - perl
+  # - perl-interpreter
   - nodejs
   - grubby
   - cowsay  # Just in case
