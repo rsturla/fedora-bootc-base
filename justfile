@@ -3,6 +3,7 @@ build-minimal:
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
+        --no-cache \
         --build-arg MANIFEST=./fedora-bootc-minimal.yaml \
         -t localhost/fedora-bootc-minimal \
         .
@@ -12,6 +13,7 @@ build-full:
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
+        --no-cache \
         --build-arg MANIFEST=./fedora-bootc-full.yaml \
         -t localhost/fedora-bootc-full \
         .
@@ -21,6 +23,7 @@ build-atomic-base:
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
+        --no-cache \
         --build-arg MANIFEST=./fedora-bootc-atomic-base.yaml \
         -t localhost/fedora-bootc-atomic-base \
         .
@@ -30,6 +33,7 @@ build-atomic-gnome:
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
+        --no-cache \
         --build-arg MANIFEST=./fedora-bootc-atomic-gnome.yaml \
         -t localhost/fedora-bootc-atomic-gnome \
         .
@@ -52,14 +56,14 @@ comps-sync:
     popd
     rm -rf fedora-comps
     git clone https://pagure.io/fedora-comps.git
-    default_variant=base
-    version="$(rpm-ostree compose tree --print-only --repo=repo fedora-bootc-atomic-${default_variant}.yaml | jq -r '."mutate-os-release"')"
+    version=$(jq -r '.Labels."redhat.version-id"' fedora-bootc-config.json)
+    echo "Version: $version"
     podman run \
         --rm \
         -v $(pwd):/mnt:Z \
         localhost/comps-sync \
         /app/comps-sync.py \
-          /mnt/fedora-comps/comps-f40.xml.in --save
+          /mnt/fedora-comps/comps-f${version}.xml.in --save
 
 build-atomic-base-qcow:
     #!/usr/bin/env bash

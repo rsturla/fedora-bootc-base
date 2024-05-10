@@ -1,3 +1,2 @@
 include:
-  - ../../02-full/manifest.yaml
   - ./packages-common-ostree.yaml

@@ -2,7 +2,6 @@
 recommends: true
 
 include:
-  - ../01-minimal/manifest.yaml
   - ./manifest/bootable-rpm-ostree.yaml
   - ./manifest/podman.yaml
   - ./manifest/firmware.yaml
