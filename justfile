@@ -1,6 +1,6 @@
 comps-sync:
     #!/usr/bin/env bash
-    pushd ./helpers/comps-sync
+    pushd ./scripts/comps-sync
     podman build \
         -t localhost/comps-sync \
         .
