@@ -1,4 +1,4 @@
-ref: fedora/rawhide/${basearch}/silverblue
+ref: fedora/${releasever}/${basearch}/silverblue
 rojig:
   name: fedora-silverblue
   summary: "Fedora Silverblue"
@@ -32,9 +32,3 @@ packages:
 exclude-packages:
   # Exclude GNOME Software's langpack plugin to avoid layering langpacks on Silverblue
   - gnome-software-fedora-langpacks
-
-# Kept in the leaf manifest as they are overwritten by Pungi in composes
-repos:
-  - fedora-rawhide
-  # - fedora-41
-  # - fedora-41-updates
