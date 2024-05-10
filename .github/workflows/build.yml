@@ -53,7 +53,7 @@ jobs:
         run: podman run --rm -ti ${{ env.IMAGE_NAME }}:latest bootc --help
 
       - name: Push Image
-        # if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
         uses: redhat-actions/push-to-registry@v2
         with:
           tags: |
