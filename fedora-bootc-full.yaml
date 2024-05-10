@@ -12,4 +12,5 @@ metadata:
 
 include:
   - 01-minimal/kernel.yaml
+  - 01-minimal/manifest.yaml
   - 02-full/manifest.yaml
