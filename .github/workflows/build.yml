@@ -23,6 +23,9 @@ jobs:
           - base
           - gnome
           - kde
+        arch:
+          - amd64
+          - arm64
     env:
       IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}
     steps:
@@ -45,7 +48,7 @@ jobs:
 
       - name: Build Image
         run: |
-          just build-atomic ${{ matrix.images }}
+          just build-atomic ${{ matrix.images }} ${{ matrix.arch }}
           podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:latest
           podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
