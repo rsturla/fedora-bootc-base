@@ -23,6 +23,9 @@ jobs:
           - base
           - gnome
           - kde
+        arch:
+          - amd64
+          - arm64
     env:
       IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}
     steps:
@@ -32,7 +35,7 @@ jobs:
       - name: Install Just
         uses: extractions/setup-just@v1
 
-      - name: Update podman
+      - name: Setup Dependencies
         run: |
           # from https://askubuntu.com/questions/1414446/whats-the-recommended-way-of-installing-podman-4-in-ubuntu-22-04
           ubuntu_version='22.04'
@@ -41,11 +44,11 @@ jobs:
           echo "deb $sources_url/ /" | sudo tee /etc/apt/sources.list.d/devel-kubic-libcontainers-unstable.list
           curl -fsSL $key_url | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/devel_kubic_libcontainers_unstable.gpg > /dev/null
           sudo apt update
-          sudo apt install -y podman
+          sudo apt install -y podman qemu-user-static
 
       - name: Build Image
         run: |
-          just build-atomic ${{ matrix.images }}
+          just build-atomic ${{ matrix.images }} ${{ matrix.arch }}
           podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:latest
           podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:${{ github.sha }}
 

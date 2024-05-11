@@ -1,3 +1,5 @@
+default_platform := 'amd64'
+
 comps-sync:
     #!/usr/bin/env bash
     pushd ./scripts/comps-sync
@@ -36,10 +38,11 @@ build-full:
         -t localhost/fedora-bootc-full \
         .
 
-build-atomic desktop:
+build-atomic desktop arch:
     podman build \
         --security-opt label=disable \
         --cap-add=all \
+        --platform linux/{{arch}} \
         --device /dev/fuse \
         --build-arg MANIFEST=./fedora-bootc-atomic-{{desktop}}.yaml \
         -t localhost/fedora-bootc-atomic-{{desktop}} \
