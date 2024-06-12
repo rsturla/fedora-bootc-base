@@ -6,6 +6,10 @@ repos:
   - fedora
   - updates
 
+variables:
+  stream: testing-devel
+  prod: false
+
 metadata:
   name: fedora-bootc-coreos
   summary: Fedora Bootable CoreOS
