@@ -7,7 +7,7 @@ repos:
   - updates
 
 metadata:
-  name: fedora-boot-atomic-gnome
+  name: fedora-bootc-atomic-gnome
   summary: Fedora Bootable Atomic GNOME
 
 include:

@@ -1,0 +1,2 @@
+include:
+  - manifests/fedora-coreos.yaml

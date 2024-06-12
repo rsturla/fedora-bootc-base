@@ -1,0 +1,11 @@
+# This service is used for printing a message if
+# some wireless firmwares are missing
+[Unit]
+Description=Check For Wireless Firmware Packages
+Before=systemd-user-sessions.service
+[Service]
+Type=oneshot
+ExecStart=/usr/libexec/coreos-check-wireless-firmwares
+RemainAfterExit=yes
+[Install]
+WantedBy=multi-user.target
