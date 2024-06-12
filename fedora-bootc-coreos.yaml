@@ -7,10 +7,10 @@ repos:
   - updates
 
 metadata:
-  name: fedora-bootc-atomic-gnome
-  summary: Fedora Bootable Atomic GNOME
+  name: fedora-bootc-coreos
+  summary: Fedora Bootable CoreOS
 
 include:
   - 01-minimal/kernel.yaml
   - 01-minimal/manifest.yaml
-  - 02-desktop/gnome/manifest.yaml
+  - 02-server/coreos/manifest.yaml

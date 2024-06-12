@@ -7,7 +7,7 @@ repos:
   - updates
 
 metadata:
-  name: fedora-boot-atomic-kde
+  name: fedora-bootc-atomic-kde
   summary: Fedora Bootable Atomic KDE
 
 include:

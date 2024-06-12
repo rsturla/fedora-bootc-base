@@ -16,6 +16,13 @@ comps-sync:
         /app/comps-sync.py \
           /mnt/fedora-comps/comps-f${version}.xml.in --save
 
+coreos-comps-sync:
+    git clone https://github.com/coreos/fedora-coreos-config
+    git --git-dir=fedora-coreos-config/.git checkout stable
+    mkdir -p 02-server/coreos/manifests
+    cp -r fedora-coreos-config/manifests 02-server/coreos/manifests
+    rm -rf fedora-coreos-config
+
 build-minimal:
     podman build \
         --security-opt label=disable \
