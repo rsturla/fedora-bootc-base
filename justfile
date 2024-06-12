@@ -22,6 +22,7 @@ coreos-comps-sync:
     pushd fedora-coreos-config
     mkdir -p ../02-server/coreos
     cp -r ./manifests ../02-server/coreos
+    cp -r ./overlay.d ../02-server/coreos
     popd
     rm -rf fedora-coreos-config
 
