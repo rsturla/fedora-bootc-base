@@ -54,6 +54,15 @@ build-atomic desktop:
         -t localhost/fedora-bootc-atomic-{{desktop}} \
         .
 
+build-coreos:
+    podman build \
+        --security-opt label=disable \
+        --cap-add=all \
+        --device /dev/fuse \
+        --build-arg MANIFEST=./fedora-bootc-coreos.yaml \
+        -t localhost/fedora-bootc-coreos \
+        .
+
 build-atomic-qcow desktop:
     #!/usr/bin/env bash
     pushd .osbuild
