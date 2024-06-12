@@ -17,10 +17,12 @@ comps-sync:
           /mnt/fedora-comps/comps-f${version}.xml.in --save
 
 coreos-comps-sync:
+    #!/usr/bin/env bash
     git clone https://github.com/coreos/fedora-coreos-config
-    git --git-dir=fedora-coreos-config/.git checkout stable
-    mkdir -p 02-server/coreos/manifests
-    cp -r fedora-coreos-config/manifests 02-server/coreos/manifests
+    pushd fedora-coreos-config
+    mkdir -p ../02-server/coreos
+    cp -r ./manifests ../02-server/coreos
+    popd
     rm -rf fedora-coreos-config
 
 build-minimal:
