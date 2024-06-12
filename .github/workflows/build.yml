@@ -10,7 +10,7 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
-  build-atomic:
+  build-coreos:
     runs-on: ubuntu-latest
     permissions:
       contents: read
