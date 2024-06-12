@@ -38,7 +38,7 @@ jobs:
 
       - name: Build Image
         run: |
-          just build-atomic ${{ matrix.images }}
+          just build-coreos
           podman tag localhost/fedora-bootc-coreos:latest ${{ env.IMAGE_NAME }}:latest
           podman tag localhost/fedora-bootc-coreos:latest ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
