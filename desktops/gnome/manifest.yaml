@@ -1,7 +1,7 @@
 ref: fedora/${releasever}/${basearch}/silverblue
 rojig:
   name: fedora-silverblue
-  summary: "Fedora Silverblue"
+  summary: "Fedora Silverblue Atomic"
   license: MIT
 
 include:
