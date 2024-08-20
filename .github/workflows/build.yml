@@ -28,6 +28,7 @@ jobs:
           - kde
           - lxqt
           - mate
+          - sway
           - xfce
     env:
       IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}
