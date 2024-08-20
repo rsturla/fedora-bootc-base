@@ -24,6 +24,7 @@ packages:
   - kde-inotify-survey
   - kde-partitionmanager
   - kde-settings-pulseaudio
+  - kdebugsettings
   - kdegraphics-thumbnailers
   - kdeplasma-addons
   - kdialog
@@ -32,8 +33,8 @@ packages:
   - kfind
   - kinfocenter
   - kio-admin
+  - kjournald
   - kmenuedit
-  - kmousetool
   - konsole
   - krfb
   - kscreen

@@ -213,7 +213,10 @@ packages-x86_64:
 packages-aarch64:
   - hyperv-daemons
   - open-vm-tools-desktop
+  - pd-mapper
   - qcom-firmware
+  - qrtr
+  - rmtfs
 packages-ppc64le:
   - lsvpd
   - powerpc-utils
