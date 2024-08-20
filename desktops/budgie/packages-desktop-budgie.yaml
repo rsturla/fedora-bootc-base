@@ -9,33 +9,26 @@ packages:
   - NetworkManager-ssh-gnome
   - NetworkManager-vpnc-gnome
   - NetworkManager-wwan
-  - adobe-source-code-pro-fonts
-  - avahi
+  - budgie-backgrounds
+  - budgie-control-center
+  - budgie-desktop
+  - budgie-desktop-defaults
+  - budgie-desktop-view
+  - budgie-screensaver
   - dconf
+  - firefox
   - fprintd-pam
-  - gdm
+  - gedit
   - glib-networking
   - glx-utils
-  - gnome-backgrounds
   - gnome-bluetooth
-  - gnome-browser-connector
-  - gnome-classic-session
-  - gnome-classic-session-xsession
   - gnome-color-manager
-  - gnome-control-center
   - gnome-disk-utility
-  - gnome-initial-setup
-  - gnome-remote-desktop
-  - gnome-session-wayland-session
-  - gnome-session-xsession
+  - gnome-keyring-pam
   - gnome-settings-daemon
-  - gnome-shell
   - gnome-software
   - gnome-system-monitor
   - gnome-terminal
-  - gnome-terminal-nautilus
-  - gnome-user-docs
-  - gnome-user-share
   - gvfs-afc
   - gvfs-afp
   - gvfs-archive
@@ -44,19 +37,17 @@ packages:
   - gvfs-gphoto2
   - gvfs-mtp
   - gvfs-smb
-  - librsvg2
-  - libsane-hpaio
+  - lightdm
   - mesa-dri-drivers
-  - mesa-libEGL
   - mesa-vulkan-drivers
-  - nautilus
+  - nemo
+  - nemo-fileroller
+  - nemo-seahorse
+  - network-manager-applet
   - polkit
-  - rygel
-  - systemd-oomd-defaults
-  - tracker
-  - tracker-miners
+  - seahorse
+  - slick-greeter
   - xdg-desktop-portal
-  - xdg-desktop-portal-gnome
   - xdg-desktop-portal-gtk
   - xdg-user-dirs-gtk
   - xorg-x11-drv-amdgpu
@@ -70,7 +61,6 @@ packages:
   - xorg-x11-server-Xorg
   - xorg-x11-xauth
   - xorg-x11-xinit
-  - yelp
 packages-x86_64:
   - xorg-x11-drv-intel
   - xorg-x11-drv-openchrome

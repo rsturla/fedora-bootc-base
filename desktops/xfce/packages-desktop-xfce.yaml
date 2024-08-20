@@ -1,64 +1,81 @@
 # DO NOT EDIT! This content is generated from comps-sync.py
 packages:
-  - ModemManager
-  - NetworkManager-adsl
   - NetworkManager-openconnect-gnome
   - NetworkManager-openvpn-gnome
-  - NetworkManager-ppp
   - NetworkManager-pptp-gnome
   - NetworkManager-ssh-gnome
   - NetworkManager-vpnc-gnome
-  - NetworkManager-wwan
-  - adobe-source-code-pro-fonts
-  - avahi
-  - dconf
-  - fprintd-pam
-  - gdm
-  - glib-networking
+  - Thunar
+  - adwaita-gtk2-theme
+  - adwaita-icon-theme
+  - atril
+  - blueman
+  - desktop-backgrounds-compat
+  - firefox
+  - galculator
   - glx-utils
-  - gnome-backgrounds
-  - gnome-bluetooth
-  - gnome-browser-connector
-  - gnome-classic-session
-  - gnome-classic-session-xsession
-  - gnome-color-manager
-  - gnome-control-center
-  - gnome-disk-utility
-  - gnome-initial-setup
-  - gnome-remote-desktop
-  - gnome-session-wayland-session
-  - gnome-session-xsession
-  - gnome-settings-daemon
-  - gnome-shell
-  - gnome-software
-  - gnome-system-monitor
-  - gnome-terminal
-  - gnome-terminal-nautilus
-  - gnome-user-docs
-  - gnome-user-share
-  - gvfs-afc
-  - gvfs-afp
+  - gnome-keyring-pam
+  - gparted
+  - greybird-dark-theme
+  - greybird-light-theme
+  - greybird-xfce4-notifyd-theme
+  - greybird-xfwm4-theme
+  - gtk-xfce-engine
+  - gvfs
   - gvfs-archive
-  - gvfs-fuse
-  - gvfs-goa
-  - gvfs-gphoto2
   - gvfs-mtp
-  - gvfs-smb
-  - librsvg2
-  - libsane-hpaio
+  - initial-setup-gui
+  - lightdm-gtk
   - mesa-dri-drivers
-  - mesa-libEGL
   - mesa-vulkan-drivers
-  - nautilus
-  - polkit
-  - rygel
-  - systemd-oomd-defaults
-  - tracker
-  - tracker-miners
-  - xdg-desktop-portal
-  - xdg-desktop-portal-gnome
-  - xdg-desktop-portal-gtk
+  - mint-y-theme
+  - mousepad
+  - network-manager-applet
+  - nm-connection-editor
+  - ristretto
+  - thunar-archive-plugin
+  - thunar-media-tags-plugin
+  - thunar-volman
+  - xarchiver
   - xdg-user-dirs-gtk
+  - xfce4-about
+  - xfce4-appfinder
+  - xfce4-battery-plugin
+  - xfce4-clipman-plugin
+  - xfce4-cpugraph-plugin
+  - xfce4-datetime-plugin
+  - xfce4-dict-plugin
+  - xfce4-diskperf-plugin
+  - xfce4-eyes-plugin
+  - xfce4-fsguard-plugin
+  - xfce4-genmon-plugin
+  - xfce4-mailwatch-plugin
+  - xfce4-mount-plugin
+  - xfce4-netload-plugin
+  - xfce4-panel
+  - xfce4-panel-profiles
+  - xfce4-places-plugin
+  - xfce4-power-manager
+  - xfce4-pulseaudio-plugin
+  - xfce4-screensaver
+  - xfce4-screenshooter-plugin
+  - xfce4-sensors-plugin
+  - xfce4-session
+  - xfce4-settings
+  - xfce4-systemload-plugin
+  - xfce4-taskmanager
+  - xfce4-terminal
+  - xfce4-time-out-plugin
+  - xfce4-verve-plugin
+  - xfce4-weather-plugin
+  - xfce4-whiskermenu-plugin
+  - xfce4-xkb-plugin
+  - xfconf
+  - xfdashboard
+  - xfdashboard-themes
+  - xfdesktop
+  - xfwm4
+  - xfwm4-themes
   - xorg-x11-drv-amdgpu
   - xorg-x11-drv-ati
   - xorg-x11-drv-evdev
@@ -70,7 +87,6 @@ packages:
   - xorg-x11-server-Xorg
   - xorg-x11-xauth
   - xorg-x11-xinit
-  - yelp
 packages-x86_64:
   - xorg-x11-drv-intel
   - xorg-x11-drv-openchrome

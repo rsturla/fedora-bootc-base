@@ -1,63 +1,51 @@
 # DO NOT EDIT! This content is generated from comps-sync.py
 packages:
-  - ModemManager
   - NetworkManager-adsl
+  - NetworkManager-bluetooth
   - NetworkManager-openconnect-gnome
   - NetworkManager-openvpn-gnome
   - NetworkManager-ppp
   - NetworkManager-pptp-gnome
-  - NetworkManager-ssh-gnome
   - NetworkManager-vpnc-gnome
+  - NetworkManager-wifi
   - NetworkManager-wwan
-  - adobe-source-code-pro-fonts
-  - avahi
-  - dconf
-  - fprintd-pam
-  - gdm
-  - glib-networking
+  - blueman
+  - cinnamon
+  - cinnamon-control-center
+  - cinnamon-screensaver
+  - firefox
+  - firewall-config
   - glx-utils
-  - gnome-backgrounds
-  - gnome-bluetooth
-  - gnome-browser-connector
-  - gnome-classic-session
-  - gnome-classic-session-xsession
-  - gnome-color-manager
-  - gnome-control-center
   - gnome-disk-utility
-  - gnome-initial-setup
-  - gnome-remote-desktop
-  - gnome-session-wayland-session
-  - gnome-session-xsession
-  - gnome-settings-daemon
-  - gnome-shell
-  - gnome-software
+  - gnome-screenshot
   - gnome-system-monitor
   - gnome-terminal
-  - gnome-terminal-nautilus
-  - gnome-user-docs
-  - gnome-user-share
-  - gvfs-afc
-  - gvfs-afp
+  - gstreamer1-plugins-ugly-free
   - gvfs-archive
-  - gvfs-fuse
-  - gvfs-goa
   - gvfs-gphoto2
   - gvfs-mtp
   - gvfs-smb
-  - librsvg2
-  - libsane-hpaio
+  - imsettings-gsettings
+  - initial-setup-gui
   - mesa-dri-drivers
-  - mesa-libEGL
   - mesa-vulkan-drivers
-  - nautilus
-  - polkit
-  - rygel
-  - systemd-oomd-defaults
-  - tracker
-  - tracker-miners
-  - xdg-desktop-portal
-  - xdg-desktop-portal-gnome
-  - xdg-desktop-portal-gtk
+  - metacity
+  - nemo-fileroller
+  - nemo-image-converter
+  - nemo-preview
+  - nm-connection-editor
+  - pipewire-alsa
+  - pipewire-pulseaudio
+  - powerline
+  - qgnomeplatform-qt5
+  - redshift-gtk
+  - setroubleshoot
+  - slick-greeter
+  - slick-greeter-cinnamon
+  - system-config-printer
+  - totem-video-thumbnailer
+  - wireplumber
+  - xawtv
   - xdg-user-dirs-gtk
   - xorg-x11-drv-amdgpu
   - xorg-x11-drv-ati
@@ -70,7 +58,6 @@ packages:
   - xorg-x11-server-Xorg
   - xorg-x11-xauth
   - xorg-x11-xinit
-  - yelp
 packages-x86_64:
   - xorg-x11-drv-intel
   - xorg-x11-drv-openchrome
