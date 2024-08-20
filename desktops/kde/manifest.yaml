@@ -1,7 +1,7 @@
 ref: fedora/${releasever}/${basearch}/kinoite
 rojig:
   name: fedora-kinoite
-  summary: "Fedora Kinoite"
+  summary: "Fedora Kinoite Atomic"
   license: MIT
 
 include:
