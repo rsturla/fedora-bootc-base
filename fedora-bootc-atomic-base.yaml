@@ -7,7 +7,7 @@ repos:
   - updates
 
 metadata:
-  name: fedora-boot-atomic-base
+  name: fedora-bootc-atomic-base
   summary: Fedora Bootable Atomic Base
 
 include:
