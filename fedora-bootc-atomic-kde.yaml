@@ -11,6 +11,6 @@ metadata:
   summary: Fedora Bootable Atomic KDE
 
 include:
-  - 01-minimal/kernel.yaml
-  - 01-minimal/manifest.yaml
-  - 02-desktop/kde/manifest.yaml
+  - base-images/01-minimal/kernel.yaml
+  - base-images/01-minimal/manifest.yaml
+  - desktops/kde/manifest.yaml

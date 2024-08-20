@@ -7,10 +7,10 @@ repos:
   - updates
 
 metadata:
-  name: fedora-boot-atomic-base
+  name: fedora-bootc-atomic-base
   summary: Fedora Bootable Atomic Base
 
 include:
-  - 01-minimal/kernel.yaml
-  - 01-minimal/manifest.yaml
-  - 02-desktop/base/manifest.yaml
+  - base-images/01-minimal/kernel.yaml
+  - base-images/01-minimal/manifest.yaml
+  - desktops/base/manifest.yaml
