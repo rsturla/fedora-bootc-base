@@ -60,6 +60,7 @@ jobs:
         run: |
           just build-atomic ${{ matrix.images }}
           podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:latest
+          podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:${{ matrix.fedora-version }}
           podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Run Image
