@@ -37,7 +37,7 @@ build-full:
         .
 
 build-atomic desktop:
-    podman build \
+    sudo podman build \
         --security-opt label=disable \
         --cap-add=all \
         --device /dev/fuse \
