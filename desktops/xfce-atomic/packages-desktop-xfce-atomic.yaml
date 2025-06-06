@@ -32,6 +32,7 @@ packages:
   - mousepad
   - network-manager-applet
   - nm-connection-editor
+  - plymouth-system-theme
   - ristretto
   - thunar-archive-plugin
   - thunar-media-tags-plugin
@@ -79,7 +80,6 @@ packages:
   - xorg-x11-drv-amdgpu
   - xorg-x11-drv-ati
   - xorg-x11-drv-evdev
-  - xorg-x11-drv-fbdev
   - xorg-x11-drv-libinput
   - xorg-x11-drv-nouveau
   - xorg-x11-drv-qxl
@@ -90,7 +90,4 @@ packages:
 packages-x86_64:
   - xorg-x11-drv-intel
   - xorg-x11-drv-openchrome
-  - xorg-x11-drv-vesa
   - xorg-x11-drv-vmware
-packages-aarch64:
-  - xorg-x11-drv-armsoc

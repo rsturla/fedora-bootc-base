@@ -52,10 +52,7 @@ packages:
   - default-fonts-other-mono
   - default-fonts-other-sans
   - default-fonts-other-serif
-  - deltarpm
   - dhcp-client
-  - dnf
-  - dnf-plugins-core
   - dnsmasq
   - e2fsprogs
   - ethtool
@@ -77,6 +74,7 @@ packages:
   - glibc
   - glibc-all-langpacks
   - gnupg2
+  - gstreamer1-plugin-dav1d
   - gstreamer1-plugin-libav
   - gstreamer1-plugins-bad-free
   - gstreamer1-plugins-good
@@ -86,12 +84,13 @@ packages:
   - hostname
   - hplip
   - hunspell
+  - hyperv-daemons
   - ibus-anthy
+  - ibus-chewing
   - ibus-gtk3
   - ibus-gtk4
   - ibus-hangul
   - ibus-libpinyin
-  - ibus-libzhuyin
   - ibus-m17n
   - ibus-typing-booster
   - intel-gpu-firmware
@@ -115,6 +114,8 @@ packages:
   - man-db
   - man-pages
   - mdadm
+  - mesa-dri-drivers
+  - mesa-vulkan-drivers
   - mpage
   - mt7xxx-firmware
   - mtr
@@ -126,11 +127,11 @@ packages:
   - nvidia-gpu-firmware
   - nxpwireless-firmware
   - oddjob-mkhomedir
+  - open-vm-tools-desktop
   - opensc
   - openssh-clients
   - openssh-server
   - orca
-  - ostree-grub2
   - pam_afs_session
   - paps
   - passwdqc
@@ -141,11 +142,13 @@ packages:
   - pipewire-pulseaudio
   - pipewire-utils
   - plocate
+  - plymouth
+  - plymouth-system-theme
   - policycoreutils
   - policycoreutils-python-utils
+  - prefixdevname
   - procps-ng
   - psmisc
-  - python3-dnf-plugins-core
   - qemu-guest-agent
   - qt5-qtbase
   - qt5-qtbase-gui
@@ -204,6 +207,7 @@ packages-x86_64:
   - cirrus-audio-firmware
   - hyperv-daemons
   - intel-audio-firmware
+  - intel-vsc-firmware
   - libva-intel-media-driver
   - mcelog
   - microcode_ctl
@@ -211,12 +215,11 @@ packages-x86_64:
   - thermald
   - virtualbox-guest-additions
 packages-aarch64:
+  - arm-image-installer
+  - cloud-utils-growpart
   - hyperv-daemons
   - open-vm-tools-desktop
-  - pd-mapper
   - qcom-firmware
   - qrtr
   - rmtfs
-packages-ppc64le:
-  - lsvpd
-  - powerpc-utils
+  - uboot-images-armv8

@@ -1,12 +1,23 @@
-# FROM python:3.10
-
-FROM fedora:40
+FROM quay.io/fedora/fedora:42
 
 RUN dnf install -y python3 python3-pip
 RUN dnf install -y rpm-ostree
+RUN dnf install -y \
+    rpm-ostree \
+    cmake \
+    gcc \
+    make \
+    ninja-build \
+    zlib-devel \
+    python3-devel \
+    git \
+    redhat-rpm-config \
+    gcc-c++ \
+    libcomps-devel
 WORKDIR /app
-COPY . .
+COPY requirements.txt .
 RUN pip install -r requirements.txt
+COPY . .
 RUN chmod +x comps-sync.py
 WORKDIR /mnt
 CMD ["python", "/app/comps-sync.py"]
