@@ -19,6 +19,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+        fedora-version: [40]
         images:
           - base
           - budgie
@@ -59,10 +60,11 @@ jobs:
         run: |
           just build-atomic ${{ matrix.images }}
           podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:latest
+          podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:${{ matrix.fedora-version }}
           podman tag localhost/fedora-bootc-atomic-${{ matrix.images }}:latest ${{ env.IMAGE_NAME }}:${{ github.sha }}
 
       - name: Run Image
-        run: podman run --rm -ti ${{ env.IMAGE_NAME }}:latest bootc --help
+        run: podman run --rm -it ${{ env.IMAGE_NAME }}:latest bootc --help
 
       - name: Push Image
         if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
@@ -71,5 +73,6 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:latest
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
+            ${{ env.IMAGE_NAME }}:${{ matrix.fedora-version }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
