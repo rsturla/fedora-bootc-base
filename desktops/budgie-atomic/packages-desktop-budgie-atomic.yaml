@@ -26,7 +26,6 @@ packages:
   - gnome-disk-utility
   - gnome-keyring-pam
   - gnome-settings-daemon
-  - gnome-software
   - gnome-system-monitor
   - gnome-terminal
   - gvfs-afc
@@ -44,6 +43,8 @@ packages:
   - nemo-fileroller
   - nemo-seahorse
   - network-manager-applet
+  - plasma-discover
+  - plymouth-system-theme
   - polkit
   - seahorse
   - slick-greeter
@@ -53,7 +54,6 @@ packages:
   - xorg-x11-drv-amdgpu
   - xorg-x11-drv-ati
   - xorg-x11-drv-evdev
-  - xorg-x11-drv-fbdev
   - xorg-x11-drv-libinput
   - xorg-x11-drv-nouveau
   - xorg-x11-drv-qxl
@@ -64,7 +64,4 @@ packages:
 packages-x86_64:
   - xorg-x11-drv-intel
   - xorg-x11-drv-openchrome
-  - xorg-x11-drv-vesa
   - xorg-x11-drv-vmware
-packages-aarch64:
-  - xorg-x11-drv-armsoc

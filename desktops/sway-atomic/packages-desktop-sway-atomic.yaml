@@ -27,6 +27,7 @@ packages:
   - pavucontrol
   - pinentry-gnome3
   - playerctl
+  - plymouth-system-theme
   - polkit
   - pulseaudio-utils
   - sddm
@@ -39,6 +40,8 @@ packages:
   - swaylock
   - system-config-printer
   - thunar-archive-plugin
+  - tuned-ppd
+  - tuned-switcher
   - waybar
   - wev
   - wl-clipboard

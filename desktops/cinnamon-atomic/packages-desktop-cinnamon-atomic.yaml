@@ -13,11 +13,13 @@ packages:
   - cinnamon
   - cinnamon-control-center
   - cinnamon-screensaver
+  - ffmpegthumbnailer
   - firefox
   - firewall-config
   - glx-utils
   - gnome-disk-utility
   - gnome-screenshot
+  - gnome-software
   - gnome-system-monitor
   - gnome-terminal
   - gstreamer1-plugins-ugly-free
@@ -36,21 +38,19 @@ packages:
   - nm-connection-editor
   - pipewire-alsa
   - pipewire-pulseaudio
+  - plymouth-system-theme
   - powerline
-  - qgnomeplatform-qt5
-  - redshift-gtk
+  - qadwaitadecorations-qt5
   - setroubleshoot
   - slick-greeter
   - slick-greeter-cinnamon
   - system-config-printer
-  - totem-video-thumbnailer
   - wireplumber
   - xawtv
   - xdg-user-dirs-gtk
   - xorg-x11-drv-amdgpu
   - xorg-x11-drv-ati
   - xorg-x11-drv-evdev
-  - xorg-x11-drv-fbdev
   - xorg-x11-drv-libinput
   - xorg-x11-drv-nouveau
   - xorg-x11-drv-qxl
@@ -61,7 +61,4 @@ packages:
 packages-x86_64:
   - xorg-x11-drv-intel
   - xorg-x11-drv-openchrome
-  - xorg-x11-drv-vesa
   - xorg-x11-drv-vmware
-packages-aarch64:
-  - xorg-x11-drv-armsoc

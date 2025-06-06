@@ -16,8 +16,9 @@ import re
 import sys
 import yaml
 import libcomps
+import os
 
-ARCHES = ("x86_64", "aarch64", "ppc64le")
+ARCHES = ("x86_64", "aarch64")
 
 def fatal(msg):
     '''Print the error message and exit.'''
@@ -58,15 +59,20 @@ def is_exclude_listed(pkgname, exclude_list_regexp):
 def load_packages_from_manifest(manifest_path):
     '''Load the list of packages from an rpm-ostree manifest file.'''
     with open(manifest_path, encoding='UTF-8') as f:
+        print(f"Loading manifest {manifest_path}")
         manifest = yaml.safe_load(f)
+
+    if not manifest:
+        raise ValueError(f"Manifest file {manifest_path} is empty or invalid YAML")
+
     print(f'Loaded {manifest_path}')
     manifest_packages = {}
-    manifest_packages['all'] = set(manifest['packages'])
+    manifest_packages['all'] = set(manifest.get('packages') or [])
+
     for arch in ARCHES:
-        if f'packages-{arch}' in manifest:
-            manifest_packages[arch] = set(manifest[f'packages-{arch}'])
-        else:
-            manifest_packages[arch] = set()
+        key = f'packages-{arch}'
+        manifest_packages[arch] = set(manifest.get(key) or [])
+
     return manifest_packages
 
 def load_packages_from_comps_group(comps_group_packages, comps, groupname, exclude_list, exclude_list_regexp):
@@ -122,6 +128,16 @@ def compare_comps_manifest_package_lists(comps_group_pkgs, manifest_packages):
     return comps_unknown, pkgs_added
 
 def update_manifests_from_groups(comps, groups, path, desktop, save, comps_exclude_list, comps_exclude_list_all):
+    # Create the file if it does not exist
+    if not os.path.exists(path):
+        # Create parent directories if needed
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        # Write an empty manifest structure
+        with open(path, 'w', encoding='UTF-8') as f:
+            f.write("# DO NOT EDIT! This content is generated from comps-sync.py\n")
+            f.write("packages:\n")
+        print(f'Created new manifest file: {path}')
+
     manifest_packages = load_packages_from_manifest(path)
 
     comps_group_pkgs = {}
@@ -200,15 +216,16 @@ def main():
 
     # List of comps groups used for each desktop
     desktops_comps_groups = {
-        "gnome": ["gnome-desktop", "base-x"],
-        "kde": ["kde-desktop", "base-graphical"],
-        "xfce": ["xfce-desktop", "xfce-apps", "xfce-extra-plugins", "base-x"],
-        "lxqt": ["lxqt-desktop", "base-graphical"],
-        "deepin": ["deepin-desktop", "base-x"],
-        "mate": ["mate-desktop", "base-x"],
-        "sway": ["swaywm", "swaywm-extended", "base-graphical"],
-        "cinnamon": ["cinnamon-desktop", "base-x"],
-        "budgie": ["budgie-desktop", "budgie-desktop-apps", "base-x"]
+        "budgie-atomic": ["budgie-desktop", "budgie-desktop-apps", "base-x"],
+        "cinnamon-atomic": ["cinnamon-desktop", "base-x"],
+        "cosmic-atomic": ["cosmic-desktop", "cosmic-desktop-apps", "base-graphical"],
+        "deepin-atomic": ["deepin-desktop", "base-x"],
+        "kinoite": ["kde-desktop", "base-graphical"],
+        "lxqt-atomic": ["lxqt-desktop", "base-graphical"],
+        "mate-atomic": ["mate-desktop", "base-x"],
+        "silverblue": ["gnome-desktop", "base-graphical"],
+        "sway-atomic": ["swaywm", "swaywm-extended", "base-graphical"],
+        "xfce-atomic": ["xfce-desktop", "xfce-apps", "xfce-extra-plugins", "base-x"],
     }
 
     # Generate treefiles for all desktops

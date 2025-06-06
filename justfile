@@ -1,18 +1,17 @@
 comps-sync:
     #!/usr/bin/env bash
+    set -euo
     pushd ./scripts/comps-sync
-    podman build \
-        -t localhost/comps-sync \
-        .
+    podman build -t comps-sync:local .
     popd
-    rm -rf fedora-comps
-    git clone https://pagure.io/fedora-comps.git
+    # rm -rf fedora-comps
+    # git clone https://pagure.io/fedora-comps.git
     version=$(jq -r '.Labels."redhat.version-id"' fedora-bootc-config.json)
     echo "Version: $version"
     podman run \
         --rm \
         -v $(pwd):/mnt:Z \
-        localhost/comps-sync \
+        comps-sync:local \
         /app/comps-sync.py \
           /mnt/fedora-comps/comps-f${version}.xml.in --save
 

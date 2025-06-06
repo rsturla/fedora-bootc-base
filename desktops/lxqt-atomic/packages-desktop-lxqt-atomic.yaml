@@ -3,6 +3,7 @@ packages:
   - breeze-cursor-theme
   - breeze-gtk
   - breeze-icon-theme
+  - falkon
   - firewall-config
   - initial-setup-gui
   - lxqt-about
@@ -19,6 +20,7 @@ packages:
   - lxqt-session
   - lxqt-themes
   - lxqt-themes-fedora
+  - lxqt-wayland-session-default-compositor-miriway
   - mesa-dri-drivers
   - mesa-vulkan-drivers
   - network-manager-applet
@@ -28,12 +30,10 @@ packages:
   - openbox
   - pcmanfm-qt
   - perl-File-MimeInfo
+  - plymouth-system-theme
   - qterminal
   - sddm
   - sddm-themes
+  - sddm-wayland-miriway
   - upower
   - xdg-user-dirs
-packages-x86_64:
-  - falkon
-packages-aarch64:
-  - falkon
