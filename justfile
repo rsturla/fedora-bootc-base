@@ -15,6 +15,16 @@ comps-sync:
         /app/comps-sync.py \
           /mnt/fedora-comps/comps-f${version}.xml.in --save
 
+coreos-comps-sync:
+    #!/usr/bin/env bash
+    git clone https://github.com/coreos/fedora-coreos-config
+    pushd fedora-coreos-config
+    mkdir -p ../02-server/coreos
+    cp -r ./manifests ../02-server/coreos
+    cp -r ./overlay.d ../02-server/coreos
+    popd
+    rm -rf fedora-coreos-config
+
 build-minimal:
     podman build \
         --security-opt label=disable \
@@ -42,6 +52,15 @@ build-atomic desktop:
         --device /dev/fuse \
         --build-arg MANIFEST=./fedora-bootc-atomic-{{desktop}}.yaml \
         -t localhost/fedora-bootc-atomic-{{desktop}} \
+        .
+
+build-coreos:
+    podman build \
+        --security-opt label=disable \
+        --cap-add=all \
+        --device /dev/fuse \
+        --build-arg MANIFEST=./fedora-bootc-coreos.yaml \
+        -t localhost/fedora-bootc-coreos \
         .
 
 build-atomic-qcow desktop:

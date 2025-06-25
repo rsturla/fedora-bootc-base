@@ -10,6 +10,52 @@ on:
     - cron: '0 0 * * *'
 
 jobs:
+  build-coreos:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    env:
+      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/fedora-bootc-base/fedora-bootc-coreos
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Just
+        uses: extractions/setup-just@v1
+
+      - name: Update podman
+        run: |
+          # from https://askubuntu.com/questions/1414446/whats-the-recommended-way-of-installing-podman-4-in-ubuntu-22-04
+          ubuntu_version='22.04'
+          key_url="https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/unstable/xUbuntu_${ubuntu_version}/Release.key"
+          sources_url="https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/unstable/xUbuntu_${ubuntu_version}"
+          echo "deb $sources_url/ /" | sudo tee /etc/apt/sources.list.d/devel-kubic-libcontainers-unstable.list
+          curl -fsSL $key_url | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/devel_kubic_libcontainers_unstable.gpg > /dev/null
+          sudo apt update
+          sudo apt install -y podman
+
+      - name: Build Image
+        run: |
+          just build-coreos
+          podman tag localhost/fedora-bootc-coreos:latest ${{ env.IMAGE_NAME }}:latest
+          podman tag localhost/fedora-bootc-coreos:latest ${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Run Image
+        run: podman run --rm -ti ${{ env.IMAGE_NAME }}:latest bootc --help
+
+      - name: Push Image
+        if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'schedule'
+        uses: redhat-actions/push-to-registry@v2
+        with:
+          tags: |
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ github.sha }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+
   build-atomic:
     runs-on: ubuntu-latest
     permissions:
