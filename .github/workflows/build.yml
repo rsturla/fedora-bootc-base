@@ -76,3 +76,43 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ matrix.fedora-version }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+
+  build-atomic-osbuild:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: read
+    strategy:
+      fail-fast: false
+      matrix:
+        images:
+          - base
+          - gnome
+          - kde
+        formats:
+          - qcow2
+    env:
+      IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/fedora-bootc-base/fedora-bootc-atomic-${{ matrix.images }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Just
+        uses: extractions/setup-just@v1
+
+      - name: Update podman
+        run: |
+          # from https://askubuntu.com/questions/1414446/whats-the-recommended-way-of-installing-podman-4-in-ubuntu-22-04
+          ubuntu_version='22.04'
+          key_url="https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/unstable/xUbuntu_${ubuntu_version}/Release.key"
+          sources_url="https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/unstable/xUbuntu_${ubuntu_version}"
+          echo "deb $sources_url/ /" | sudo tee /etc/apt/sources.list.d/devel-kubic-libcontainers-unstable.list
+          curl -fsSL $key_url | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/devel_kubic_libcontainers_unstable.gpg > /dev/null
+          sudo apt update
+          sudo apt install -y podman
+
+      - name: Pull Image
+        run: |
+          sudo podman image pull ${{ env.IMAGE_NAME }}:${{ github.sha }}
+
+      - name: Build QCOW2
+        run: just build-atomic-${{ matrix.format }} ${{ matrix.images }}:${{ github.sha }}

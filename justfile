@@ -44,7 +44,7 @@ build-atomic desktop:
         -t localhost/fedora-bootc-atomic-{{desktop}} \
         .
 
-build-atomic-qcow desktop:
+build-atomic-qcow2 desktop:
     #!/usr/bin/env bash
     pushd .osbuild
     mkdir -p output
